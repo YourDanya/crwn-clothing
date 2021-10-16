@@ -12,13 +12,23 @@ import {setCurrentUser} from './redux/user/user.actions'
 import {selectCurrentUser} from './redux/user/user.selector'
 import {createStructuredSelector} from 'reselect'
 import CheckoutPage from "./pages/checkout/checkout.component";
+import styled from 'styled-components'
+
+
+// const Text= styled.div`
+//     color:red;
+//     font-size: 28px;
+//     border: ${({isActive})=> isActive ? '1px solid black' : '3px dotted green'}
+// `
 
 class App extends React.Component {
 
     unsubscribeFromAuth=null
 
     componentDidMount() {
-        const {setCurrentUser}= this.props;
+        const {setCurrentUser, collectionsArray}= this.props;
+
+        console.log(collectionsArray)
 
         this.unsubscribeFromAuth=auth.onAuthStateChanged(async userAuth =>{
             if(userAuth) {
@@ -35,6 +45,7 @@ class App extends React.Component {
                 setCurrentUser(userAuth)
             }
 
+            // addCollectionAndDocuments('collections', collectionsArray.map(({title, items}) => ({title, items})))
         })
     }
 
@@ -66,6 +77,7 @@ const mapDispatchToProps=dispatch=>({
 
 const mapStateToProps= createStructuredSelector({
     currentUser: selectCurrentUser
+    // collectionsArray: selectCollectionsForPreview
 })
 
 export default connect(
