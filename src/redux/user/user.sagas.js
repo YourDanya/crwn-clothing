@@ -61,7 +61,6 @@ export function* isUserAuthenticated(){
 }
 
 export function* onCheckUserSession(){
-    console.log('i ll be twice a king ')
     yield takeEvery(UserActionTypes.CHECK_USER_SESSION, isUserAuthenticated)
 }
 

@@ -3,7 +3,7 @@ import './App.css';
 import React, {useEffect} from 'react'
 import {Route, Switch, Redirect} from 'react-router-dom'
 import {createStructuredSelector} from 'reselect'
-import {connect} from 'react-redux'
+import {connect, useSelector, useDispatch} from 'react-redux'
 
 import HomePage from './pages/homepage/homepage.component'
 import ShopPage from "./pages/shop/shop.component";
@@ -21,11 +21,14 @@ import {checkUserSession} from "./redux/user/user.actions";
 //     border: ${({isActive})=> isActive ? '1px solid black' : '3px dotted green'}
 // `
 
-const App= ({checkUserSession, currentUser})=> {
+const App= ()=> {
+
+    const currentUser = useSelector(selectCurrentUser)
+    const dispatch= useDispatch()
 
     useEffect(() => {
-        checkUserSession()
-    }, [checkUserSession])
+        dispatch(checkUserSession())
+    }, [dispatch])
 
     return (
         <div>
@@ -52,7 +55,4 @@ const mapDispatchToProps = dispatch => ({
     checkUserSession: () => dispatch(checkUserSession())
 })
 
-export default connect(
-    mapStateToProps,
-    mapDispatchToProps
-)(App);
+export default App;

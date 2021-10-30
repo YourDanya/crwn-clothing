@@ -18,8 +18,6 @@ const func2= (temp)=>{
 export function* fetchCollectionsAsync(){
     // const res1 = yield func1()
     // const res2= func2(res1)
-    // console.log(res2)
-    // yield console.log(res2)
     try{
         const collectionRef= firestore.collection('collections')
         const snapshot= yield collectionRef.get()
