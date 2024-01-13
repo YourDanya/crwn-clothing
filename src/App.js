@@ -40,7 +40,8 @@ const App= ()=> {
                 <Route exact path={'/signIn'} render={()=>
                     currentUser? (
                         <Redirect to={'/'}/>
-                    ): (<SignInAndSignUpPage/>) }/>
+                    ): (<SignInAndSignUpPage/>) }
+                />
             </Switch>
         </div>
     )
